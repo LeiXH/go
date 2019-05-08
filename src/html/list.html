@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="/static/js/xlsx.full.min.js"></script>
+    <script src="/static/js/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+<style type="text/css">
+    table{padding: 0; width:auto;}
+    th{font: bold 12px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;color: #444444; border:1px solid #C1DAD7; border-top:none; text-align: center;padding: 6px 2px 2px 6px;height:18px;background-color:#fff;vertical-align:middle; padding:0.5em;}
+    td{ border: 1px solid #C1DAD7; background:#9bc669; font-size:12px; text-align:center; color: #4f6b72;vertical-align:middle; padding:0.5em;}
+
+
+    #mytable {padding: 0; WIDTH: 100%;}
+    caption { padding: 0 0 5px 0; width: 700px; font: italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;text-align: right; }
+    #mytable th {font: bold 12px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;border-right: 1px solid #FFF;border-bottom: 1px solid #7eb547; border-top: 1px solid #7eb547;text-align: center;padding: 6px 2px 2px 6px;height:18px;background-color:#deedce;vertical-align:middle; color:#666;border-right: 1px solid #7EB547;}
+    th.nobg {border-top: 0; border-left: 0; border-right: 1px solid #C1DAD7;background: none; }
+    #mytable td { border-right: 1px solid #cecece;border-bottom: 1px solid #cecece; background: #f8f8f8; font-size:12px; padding: 4px 4px 4px 10px; color: #4f6b72;vertical-align:middle; max-width:300px;text-align:center;text-justify:inter-ideograph; word-break:break-all;}
+    td.alt {background: #F5FAFA; color: #797268; }
+    th.spec { border-left: 1px solid #C1DAD7;border-top: 0; background: #fff no-repeat; font: bold 12px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; }
+    th.specalt {border-left: 1px solid #C1DAD7; border-top: 0; background: #f5fafa no-repeat; font: bold 12px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; color: #797268;}
+
+
+    TABLE.list {
+        PADDING-BOTTOM: 4px; BORDER-RIGHT-WIDTH: 0px; BACKGROUND-COLOR: #ffffff;  WIDTH: 100%;  BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; PADDING-TOP: 4px;
+    }
+    TABLE.list TH {
+        TEXT-ALIGN: center; BACKGROUND-COLOR: #deedce; COLOR: #666
+    }
+    TABLE.list TD {
+        TEXT-ALIGN: left; BACKGROUND-COLOR: #f8f8f8; PADDING-LEFT: 5px; border:#CCC 1px solid;
+    }
+    TABLE.list TD A:link {
+        COLOR: #333333; TEXT-DECORATION: underline
+    }
+    TABLE.list TD A:visited {
+        COLOR: #333333; TEXT-DECORATION: underline
+    }
+    TABLE.list TD A:hover {
+        COLOR: #ff0000; TEXT-DECORATION: underline
+    }
+    .input{ border:#c2c2c2 1px solid; height:20px; line-height:20px; padding-left:2px; font-size:12px;}
+
+</style>
+<div id="demo"></div>
+<input type="file"onchange="importf(this)" />
+<button onclick="downloadExl()">导出</button>
+<a href="" download="签到数据.xlsx" id="hf"></a>
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: "/api/all",
+            type: "GET"
+        }).done(function (resp) {
+            if(resp.code == 0){
+                var jsonData = resp.data;
+                let html =''
+                jsonData.map(key=>{
+                    html += `<tr>`
+                    html+=`
+                            <td>${key.work_number}</td>
+                            <td>${key.domain_name}</td>
+                            <td>${key.department}</td>
+                            <td>${key.seat_area}</td>
+                            <td>${key.name}</td>
+                            <td>${key.qr_code}</td>
+                            <td>${key.signed}</td>
+                          `
+                    html += `</tr>`
+                })
+                $('#my-tbody').append(html)
+            }
+            document.getElementById("demo").innerHTML = "查看数据"
+        }).fail(function () {
+            document.getElementById("demo").innerHTML = "查看数据失败"
+        });
+    })
+
+    var wb;//读取完成的数据
+    var rABS = false; //是否将文件读取为二进制字符串
+
+    var jsonData;
+
+    function importf(obj) {//导入
+        if(!obj.files) {
+            return;
+        }
+        var f = obj.files[0];
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var data = e.target.result;
+            if(rABS) {
+                wb = XLSX.read(btoa(fixdata(data)), {//手动转化
+                    type: 'base64'
+                });
+            } else {
+                wb = XLSX.read(data, {
+                    type: 'binary'
+                });
+            }
+            //document.getElementById("demo").innerHTML= JSON.stringify( XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]) );
+            jsonData = JSON.stringify( XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]) );
+
+            $.ajax({
+                url: "/api/import",
+                type: "POST",
+                contentType: "application/x-www-form-urlencoded",
+                data: { "data": jsonData }
+            }).done(function (resp) {
+                let data = resp.error;
+                if (data) {
+                    // 存一下, 重新打印需要
+                    document.getElementById("demo").innerHTML = "导入成功"
+                    return;
+                }
+                document.getElementById("demo").innerHTML = "导入失败"
+
+            }).fail(function () {
+                document.getElementById("demo").innerHTML = "导入失败"
+            });
+        };
+        if(rABS) {
+            reader.readAsArrayBuffer(f);
+        } else {
+            reader.readAsBinaryString(f);
+        }
+    }
+
+    function fixdata(data) { //文件流转BinaryString
+        var o = "",
+            l = 0,
+            w = 10240;
+        for(; l < data.byteLength / w; ++l) o += String.fromCharCode.apply(null, new Uint8Array(data.slice(l * w, l * w + w)));
+        o += String.fromCharCode.apply(null, new Uint8Array(data.slice(l * w)));
+        return o;
+    }
+
+    var tmpDown; //导出的二进制对象
+    function downloadExl(type) {
+        $.ajax({
+            url: "/api/all",
+            type: "GET",
+            contentType: "application/x-www-form-urlencoded",
+        }).done(function (resp) {
+            let data = resp.code;
+            if (data == 0) {
+                // 存一下, 重新打印需要
+                var jsono = resp.data;
+                var tmpdata = jsono[0];
+                jsono.unshift({});
+                var keyMap = []; //获取keys
+                //keyMap =Object.keys(json[0]);
+                for (var k in tmpdata) {
+                    keyMap.push(k);
+                    jsono[0][k] = k;
+                }
+                var tmpdata = [];//用来保存转换好的json
+                jsono.map((v, i) => keyMap.map((k, j) => Object.assign({}, {
+                    v: v[k],
+                    position: (j > 25 ? getCharCol(j) : String.fromCharCode(65 + j)) + (i + 1)
+                }))).reduce((prev, next) => prev.concat(next)).forEach((v, i) => tmpdata[v.position] = {
+                    v: v.v
+                });
+                var outputPos = Object.keys(tmpdata); //设置区域,比如表格从A1到D10
+                var tmpWB = {
+                    SheetNames: ['mySheet'], //保存的表标题
+                    Sheets: {
+                        'mySheet': Object.assign({},
+                            tmpdata, //内容
+                            {
+                                '!ref': outputPos[0] + ':' + outputPos[outputPos.length - 1] //设置填充区域
+                            })
+                    }
+                };
+                tmpDown = new Blob([s2ab(XLSX.write(tmpWB,
+                    {bookType: (type == undefined ? 'xlsx':type),bookSST: false, type: 'binary'}//这里的数据是用来定义导出的格式类型
+                ))], {
+                    type: ""
+                }); //创建二进制对象写入转换好的字节流
+                var href = URL.createObjectURL(tmpDown); //创建对象超链接
+                document.getElementById("hf").href = href; //绑定a标签
+                document.getElementById("hf").click(); //模拟点击实现下载
+                setTimeout(function() { //延时释放
+                    URL.revokeObjectURL(tmpDown); //用URL.revokeObjectURL()来释放这个object URL
+                }, 100);
+            }
+
+        }).fail(function () {
+            document.getElementById("demo").innerHTML = "导出失败"
+        });
+    }
+
+    function s2ab(s) { //字符串转字符流
+        var buf = new ArrayBuffer(s.length);
+        var view = new Uint8Array(buf);
+        for (var i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
+        return buf;
+    }
+    // 将指定的自然数转换为26进制表示。映射关系：[0-25] -> [A-Z]。
+    function getCharCol(n) {
+        let temCol = '',
+            s = '',
+            m = 0
+        while (n > 0) {
+            m = n % 26 + 1
+            s = String.fromCharCode(m + 64) + s
+            n = (n - m) / 26
+        }
+        return s
+    }
+
+</script>
+
+<table id="mytable" cellspacing="0" summary="">
+    <thead>
+    <tr>
+        <th>工作num</th>
+        <th>状态</th>
+        <th>是否导出</th>
+        <th>会议ID</th>
+        <th>用户头像</th>
+        <th>是否签到</th>
+        <th>签到方式</th>
+    </tr>
+    </thead>
+    <tbody id="my-tbody">
+
+    </tbody>
+
+</table>
+
+
+</body>
+
+</html>
