@@ -1,6 +1,6 @@
 src/github.com/
 src/golang.org/
 src/gopkg.in/
-pkg/
-bin/
+/pkg/
+/bin/
 src/src/

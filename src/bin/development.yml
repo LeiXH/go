@@ -1,0 +1,27 @@
+server:
+  port: 12345
+  mode: debug
+
+mysql:
+  username: root
+  password: imsp_vcloud
+  host: "172.16.154.26"
+  port: 3306
+  database: iflytek_annual_meeting
+  # https://github.com/go-sql-driver/mysql/issues/674
+  # https://github.com/go-sql-driver/mysql/issues/583
+  # solve mysql packets.go:36: unexpected EOF
+  max_life_time: 10
+  max_idle: 0
+  max_open: 10
+
+printer:
+  enabled: false
+  port: "Gprinter GP-3120TU"
+  width: 70
+  height: 50
+  speed: 5
+  density: 8
+  sensor: 0
+  vertical: 1.5
+  offset: 0

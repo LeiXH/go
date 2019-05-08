@@ -11,150 +11,199 @@
     <collation id="3" parent="1" name="BINARY"/>
     <collation id="4" parent="1" name="NOCASE"/>
     <collation id="5" parent="1" name="RTRIM"/>
-    <table id="6" parent="2" name="sqlite_master">
+    <table id="6" parent="2" name="briefing"/>
+    <table id="7" parent="2" name="sqlite_master">
       <System>1</System>
     </table>
-    <table id="7" parent="2" name="sqlite_sequence">
+    <table id="8" parent="2" name="sqlite_sequence">
       <System>1</System>
     </table>
-    <table id="8" parent="2" name="staff"/>
-    <table id="9" parent="2" name="userinfo"/>
-    <column id="10" parent="6" name="type">
-      <Position>1</Position>
-      <DataType>text|0s</DataType>
-    </column>
-    <column id="11" parent="6" name="name">
-      <Position>2</Position>
-      <DataType>text|0s</DataType>
-    </column>
-    <column id="12" parent="6" name="tbl_name">
-      <Position>3</Position>
-      <DataType>text|0s</DataType>
-    </column>
-    <column id="13" parent="6" name="rootpage">
-      <Position>4</Position>
-      <DataType>int|0s</DataType>
-    </column>
-    <column id="14" parent="6" name="sql">
-      <Position>5</Position>
-      <DataType>text|0s</DataType>
-    </column>
-    <column id="15" parent="7" name="name">
-      <Position>1</Position>
-    </column>
-    <column id="16" parent="7" name="seq">
-      <Position>2</Position>
-    </column>
-    <column id="17" parent="8" name="id">
+    <table id="9" parent="2" name="staff"/>
+    <table id="10" parent="2" name="userinfo"/>
+    <column id="11" parent="6" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="18" parent="8" name="work_number">
+    <column id="12" parent="6" name="name">
       <Position>2</Position>
-      <DataType>char(16)|0s</DataType>
+      <DataType>varchar(32)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="19" parent="8" name="domain_name">
+    <column id="13" parent="6" name="code">
       <Position>3</Position>
-      <DataType>char(16)|0s</DataType>
+      <DataType>varchar(32)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="20" parent="8" name="department">
+    <column id="14" parent="6" name="company">
       <Position>4</Position>
-      <DataType>varchar(16)|0s</DataType>
+      <DataType>varchar(32)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="21" parent="8" name="seat_area">
+    <column id="15" parent="6" name="telephone">
       <Position>5</Position>
       <DataType>varchar(32)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="22" parent="8" name="name">
+    <column id="16" parent="6" name="degree">
       <Position>6</Position>
-      <DataType>varchar(16)|0s</DataType>
+      <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
     </column>
-    <column id="23" parent="8" name="qrcode">
+    <column id="17" parent="6" name="signed">
       <Position>7</Position>
-      <DataType>char(32)|0s</DataType>
+      <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
     </column>
-    <column id="24" parent="8" name="signed">
-      <Position>8</Position>
-      <DataType>bit(1)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <index id="25" parent="8" name="staff_id_uindex">
+    <index id="18" parent="6" name="briefing_id_uindex">
       <ColNames>id</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="26" parent="8" name="staff_pk">
+    <key id="19" parent="6" name="briefing_pk">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>briefing_id_uindex</UnderlyingIndexName>
+    </key>
+    <column id="20" parent="7" name="type">
+      <Position>1</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="21" parent="7" name="name">
+      <Position>2</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="22" parent="7" name="tbl_name">
+      <Position>3</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="23" parent="7" name="rootpage">
+      <Position>4</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="24" parent="7" name="sql">
+      <Position>5</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="25" parent="8" name="name">
+      <Position>1</Position>
+    </column>
+    <column id="26" parent="8" name="seq">
+      <Position>2</Position>
+    </column>
+    <column id="27" parent="9" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="28" parent="9" name="work_number">
+      <Position>2</Position>
+      <DataType>char(16)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="29" parent="9" name="domain_name">
+      <Position>3</Position>
+      <DataType>char(16)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="30" parent="9" name="department">
+      <Position>4</Position>
+      <DataType>varchar(16)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="31" parent="9" name="seat_area">
+      <Position>5</Position>
+      <DataType>varchar(32)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="32" parent="9" name="name">
+      <Position>6</Position>
+      <DataType>varchar(16)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="33" parent="9" name="qrcode">
+      <Position>7</Position>
+      <DataType>char(32)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="34" parent="9" name="signed">
+      <Position>8</Position>
+      <DataType>bit(1)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="35" parent="9" name="staff_id_uindex">
+      <ColNames>id</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <key id="36" parent="9" name="staff_pk">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>staff_id_uindex</UnderlyingIndexName>
     </key>
-    <column id="27" parent="9" name="id">
+    <column id="37" parent="10" name="id">
       <Position>1</Position>
       <DataType>INTEGER|0s</DataType>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="28" parent="9" name="meeting_id">
+    <column id="38" parent="10" name="meeting_id">
       <Position>2</Position>
       <DataType>INT|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="29" parent="9" name="enter_status">
+    <column id="39" parent="10" name="enter_status">
       <Position>3</Position>
       <DataType>TINYINT|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="30" parent="9" name="enter_channel">
+    <column id="40" parent="10" name="enter_channel">
       <Position>4</Position>
       <DataType>TINYINT|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="31" parent="9" name="is_import">
+    <column id="41" parent="10" name="is_import">
       <Position>5</Position>
       <DataType>TINYINT|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="32" parent="9" name="sign_status">
+    <column id="42" parent="10" name="sign_status">
       <Position>6</Position>
       <DataType>TINYINT|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="33" parent="9" name="sign_type">
+    <column id="43" parent="10" name="sign_type">
       <Position>7</Position>
       <DataType>TINYINT|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="34" parent="9" name="user_name">
+    <column id="44" parent="10" name="user_name">
       <Position>8</Position>
       <DataType>VARCHAR(60)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="35" parent="9" name="picture">
+    <column id="45" parent="10" name="picture">
       <Position>9</Position>
       <DataType>VARCHAR(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="36" parent="9" name="telephone">
+    <column id="46" parent="10" name="telephone">
       <Position>10</Position>
       <DataType>VARCHAR(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="37" parent="9" name="create_time">
+    <column id="47" parent="10" name="create_time">
       <Position>11</Position>
       <DataType>DATE|0s</DataType>
     </column>
-    <column id="38" parent="9" name="update_time">
+    <column id="48" parent="10" name="update_time">
       <Position>12</Position>
       <DataType>DATE|0s</DataType>
     </column>
-    <key id="39" parent="9">
+    <key id="49" parent="10">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
