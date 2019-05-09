@@ -8,24 +8,28 @@ import (
 )
 
 const (
-	getUserInfoSqlTemplate      = `select * from staff where %s = ?`
-	countUserInfoSqlTemplate    = `select count(*) from staff where %s = ?`
-	markUserAsSignedSqlTemplate = `update staff set signed = 1 where %s = ?`
-	countUserSignSqlTemplate    = `select count(*) from staff where signed = 1 and %s = ?`
+	getUserInfoSqlTemplate      = `select * from briefing where %s = ?`
+	countUserInfoSqlTemplate    = `select count(*) from briefing where %s = ?`
+	markUserAsSignedSqlTemplate = `update briefing set signed = 1 where %s = ?`
+	countUserSignSqlTemplate    = `select count(*) from briefing where signed = 1 and %s = ?`
+	queryUsersOffset            = `select * from briefing limit ? offset ?`
+	queryTelephoneIsExist       = `select count(*) from briefing where telephone = ? `
 )
 
 type UserQueryType int
 
 const (
 	_ UserQueryType = iota
-	QueryTypeQrCode
 	QueryTypeWorkNumber
+	QueryTypeQrCode
+	QueryTypeTelephone
 )
 
 var (
 	userQueryTypeMap = map[UserQueryType]string{
 		QueryTypeWorkNumber: "work_number",
-		QueryTypeQrCode:     "qrcode",
+		QueryTypeQrCode:     "code",
+		QueryTypeTelephone : "telephone",
 	}
 )
 
@@ -40,14 +44,10 @@ func GetUserInfo(queryType UserQueryType, keyword interface{}) (*models.UserInfo
 
 	userInfo := models.UserInfo{}
 	var id  int
-	var sign int
 	querys := fmt.Sprintf(getUserInfoSqlTemplate, _type)
-	err := DB.QueryRow(querys, keyword).Scan(&id, &userInfo.WorkNumber, &userInfo.DomainName,
-		&userInfo.Department, &userInfo.SeatArea, &userInfo.Name, &userInfo.QrCode, &sign)
+	err := DB.QueryRow(querys, keyword).Scan(&id, &userInfo.Name, &userInfo.Code,
+		&userInfo.Company, &userInfo.Telephone, &userInfo.Degree, &userInfo.Signed)
 
-	if sign != 0 {
-		userInfo.Signed = true
-	}
 	if err != nil {
 		return nil, err
 	}
@@ -102,10 +102,11 @@ func CountUserSignedRecord(queryType UserQueryType, keyword interface{}) (int, e
 	return c, nil
 }
 
-func GetAllUser() ([]models.UserInfo, error) {
+func GetAllUser(nums int) ([]models.UserInfo, error) {
 	var all []models.UserInfo
 	DB := database.MySQL()
-	rows, err :=DB.Query("select * from staff")
+	limit := 1
+	rows, err :=DB.Query(queryUsersOffset, limit, nums * limit )
 
 	if err != nil {
 		return all, err
@@ -114,11 +115,7 @@ func GetAllUser() ([]models.UserInfo, error) {
 	for rows.Next() {
 		var one models.UserInfo
 		var id  int
-		var sign int64
-		rows.Scan(&id, &one.WorkNumber, &one.DomainName, &one.Department, &one.SeatArea, &one.Name, &one.QrCode, &sign)
-		if sign != 0 {
-			one.Signed = true
-		}
+		rows.Scan(&id, &one.Name, &one.Code, &one.Company, &one.Telephone, &one.Degree, &one.Signed)
 
 		all = append(all, one)
 	}
@@ -127,9 +124,9 @@ func GetAllUser() ([]models.UserInfo, error) {
 
 func InsertData(info *models.UserInfo) error {
 	DB := database.MySQL()
-	smt, err := DB.Prepare(`insert into  staff (work_number, domain_name, department, seat_area, name, qrcode, signed) values (?, ? , ? , ? , ? , ?, ?)`)
+	smt, err := DB.Prepare(`insert into  briefing (name, code, company, telephone, degree, signed) values (?, ? , ? , ? , ? , ?)`)
 
-	res, err :=smt.Exec(info.WorkNumber, info.DomainName, info.Department, info.SeatArea, info.Name, info.QrCode, info.Signed)
+	res, err :=smt.Exec(info.Name, info.Code, info.Company, info.Telephone, info.Degree, info.Signed)
 
 	_, err = res.LastInsertId()
 
@@ -137,4 +134,18 @@ func InsertData(info *models.UserInfo) error {
 		return  err
 	}
 	return nil
+}
+
+func GetUserByTelephone(telephone string) (int ,  error)  {
+
+	var c int
+
+	DB := database.MySQL()
+
+	err :=DB.QueryRow(queryTelephoneIsExist, telephone).Scan(&c)
+
+	if err != nil {
+		return -1, err
+	}
+	return c, nil
 }

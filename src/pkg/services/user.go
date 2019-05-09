@@ -22,14 +22,14 @@ func DoSIgnForUser(queryType mapper.UserQueryType, keyword string) error {
 	return nil
 }
 func IsUserSigned(user *models.UserInfo) bool {
-	if rc, err := mapper.CountUserSignedRecord(mapper.QueryTypeWorkNumber, user.WorkNumber); err != nil || rc == 0 {
+	if rc, err := mapper.CountUserSignedRecord(mapper.QueryTypeTelephone, user.Telephone); err != nil || rc == 0 {
 		return false
 	}
 	return true
 }
 
-func GetAll() ([] models.UserInfo, bool) {
-	if all, err := mapper.GetAllUser(); err == nil {
+func GetAll(nums int) ([] models.UserInfo, bool) {
+	if all, err := mapper.GetAllUser(nums); err == nil {
 		return all, true
 	}
 
@@ -42,4 +42,11 @@ func InsertData(user *models.UserInfo) error {
 		return err
 	}
 	return nil
+}
+
+func IsExist(tele string) bool {
+	if res, err :=mapper.GetUserByTelephone(tele); err !=nil || res == 0 {
+		return true
+	}
+	return false
 }

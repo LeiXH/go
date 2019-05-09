@@ -62,12 +62,11 @@
                 jsonData.map(key=>{
                     html += `<tr>`
                     html+=`
-                            <td>${key.work_number}</td>
-                            <td>${key.domain_name}</td>
-                            <td>${key.department}</td>
-                            <td>${key.seat_area}</td>
                             <td>${key.name}</td>
-                            <td>${key.qr_code}</td>
+                            <td>${key.code}</td>
+                            <td>${key.company}</td>
+                            <td>${key.telephone}</td>
+                            <td>${key.degree}</td>
                             <td>${key.signed}</td>
                           `
                     html += `</tr>`
@@ -218,13 +217,12 @@
 <table id="mytable" cellspacing="0" summary="">
     <thead>
     <tr>
-        <th>工作num</th>
-        <th>状态</th>
-        <th>是否导出</th>
-        <th>会议ID</th>
-        <th>用户头像</th>
+        <th>姓名</th>
+        <th>Code</th>
+        <th>公司</th>
+        <th>手机号</th>
+        <th>嘉宾</th>
         <th>是否签到</th>
-        <th>签到方式</th>
     </tr>
     </thead>
     <tbody id="my-tbody">

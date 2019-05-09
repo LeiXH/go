@@ -1,13 +1,10 @@
 package models
 
-import "pkg/models/types"
-
 type UserInfo struct {
-	WorkNumber string        `db:"work_number" json:"work_number"`
-	DomainName string        `db:"domain_name" json:"domain_name"`
-	Department string        `db:"department" json:"department"`
-	SeatArea   string        `db:"seat_area" json:"seat_area"`
 	Name       string        `db:"name" json:"name"`
-	QrCode     string        `db:"qrcode" json:"qr_code"`
-	Signed     types.SQLBool `db:"signed" json:"signed"`
+	Code       string         `db:"code" json:"code"`
+	Company string           `db:"company" json:"company"`
+	Telephone string         `db:"telephone" json:"telephone"`
+	Degree   int          `db:"degree" json:"degree"`
+	Signed     int           `db:"signed" json:"signed"`
 }

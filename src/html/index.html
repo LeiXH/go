@@ -97,12 +97,14 @@
         <div class="cata">
             <ol>
                 <li>姓 名</li>
-                <li>部 门</li>
-                <li>座 席</li>
+                <li>公 司</li>
+                <li>手机号</li>
+                <li>嘉 宾</li>
             </ol>
         </div>
         <div class="content" id="user-content">
             <ol>
+                <li>待显示</li>
                 <li>待显示</li>
                 <li>待显示</li>
                 <li>待显示</li>
@@ -140,9 +142,11 @@
     var currentUserInfo;
     var currentWorkNumberInputStack = "";
 
+    var degree = {0:"嘉宾", 1: "贵宾", 2: "VIP"};
+
     function reset() {
         currentWorkNumberInputStack = "";
-        currentUserInfo = { "name": "", "department": "", "seat_area": "", "work_number": "" }
+        currentUserInfo = { "name": "", "company": "", "telephone": "", "degree": "" }
         updateStatus();
     }
     function saveNow(data) {
@@ -156,12 +160,23 @@
     }
 
     function renderUserInfo(data) {
+        switch (data.degree) {
+            case 0:
+                data.degree = "嘉宾"; break;
+            case 1:
+                data.degree = "贵宾"; break;
+            case 2:
+                data.degree = "VIP"; break;
+            default:
+                data.degree = "嘉宾"
+        }
         $("#user-content").html(`<ol>
                     <li>{user_name}</li>
-                    <li>{department}</li>
-                    <li>{seat_area}</li>
+                    <li>{company}</li>
+                    <li>{phone}</li>
+                    <li>{degree}</li>
                 </ol>`.formatUnicorn(
-            { "user_name": data.name, "department": data.department, "seat_area": data.seat_area }
+            { "user_name": data.name, "company": data.company, "phone": data.telephone, "degree": data.degree }
             )
         );
     }
@@ -170,7 +185,7 @@
             url: "/api/sign",
             type: "POST",
             contentType: "application/json",
-            data: JSON.stringify({ "sign_type": 1, "keyword": work_number })
+            data: JSON.stringify({ "sign_type": 3, "keyword": work_number })
         }).done(function (resp) {
             let data = resp.data;
             if (!data) {
@@ -187,7 +202,7 @@
     }
     function rePrint() {
         $.ajax({
-            url: "/api/reprint?" + $.param({ "num": currentUserInfo.work_number }),
+            url: "/api/reprint?" + $.param({ "num": currentUserInfo.telephone }),
             type: "GET"
         }).done(() => {
             updateStatus("为" + currentUserInfo.name + "重新打印完成");

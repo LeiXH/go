@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"pkg/logger"
 	"pkg/models"
+	"strconv"
 
 	"pkg/server/controller/form"
 	"pkg/server/controller/response"
@@ -29,10 +30,10 @@ func GinDoUserSignManually( c echo.Context) error {
 	}
 
 	if signed := services.IsUserSigned(userInfo); !signed {
-		_ = services.DoSIgnForUser(mapper.QueryTypeWorkNumber, userInfo.WorkNumber)
+		_ = services.DoSIgnForUser(mapper.QueryTypeTelephone, userInfo.Telephone)
 		printer.PrintUserLabel(userInfo)
 	}
-	if queryType == mapper.QueryTypeWorkNumber {
+	if queryType == mapper.QueryTypeQrCode {
 		if webSocketConned.Load() == true {
 			userInfoChan <- *userInfo
 		}
@@ -46,7 +47,7 @@ func GinJustPrintUserLabel(c echo.Context) error{
 	if len(workNum) == 0 {
 		return c.JSON(http.StatusOK, response.RenderError(response.INVALID_PARAM, errors.New("no args")))
 	}
-	userInfo, err := services.QueryUserInfo(mapper.QueryTypeWorkNumber, workNum)
+	userInfo, err := services.QueryUserInfo(mapper.QueryTypeTelephone, workNum)
 	if err != nil {
 		return c.JSON(http.StatusOK, response.RenderError(response.INVALID_PARAM, err))
 	}
@@ -81,19 +82,16 @@ func Import(c echo.Context) error  {
 
 	for _, one := range dataMap {
 		user.Name = one["name"]
-		if one["signed"] == "true" {
-			user.Signed = true
-		} else {
-			user.Signed = false
-		}
-		user.QrCode = one["qr_code"]
-		user.SeatArea = one["seat_area"]
-		user.DomainName = one["domain_name"]
-		user.WorkNumber = one["work_number"]
-		user.Department = one["department"]
-		err := services.InsertData(&user)
-		if err != nil {
-			logger.Infof("insert error %s", err)
+		user.Signed, _ = strconv.Atoi(one["signed"])
+		user.Code = one["code"]
+		user.Company = one["company"]
+		user.Telephone = one["telephone"]
+		user.Degree, _ = strconv.Atoi(one["degree"])
+		if re :=services.IsExist(user.Telephone); re == false {
+			err := services.InsertData(&user)
+			if err != nil {
+				logger.Infof("insert error %s", err)
+			}
 		}
 	}
 	return c.JSON(http.StatusOK, response.RenderSuccess(""))
@@ -101,7 +99,8 @@ func Import(c echo.Context) error  {
 
 func All(c echo.Context) error  {
 
-	users, ok :=services.GetAll()
+	nums, _ := strconv.Atoi(c.FormValue("num"))
+	users, ok :=services.GetAll(nums)
 
 	if ok {
 		return c.JSON(http.StatusOK, response.RenderSuccess(users))
