@@ -4,8 +4,8 @@ server:
 
 mysql:
   username: root
-  password: imsp_vcloud
-  host: "172.16.154.26"
+  password: "***"
+  host: "172.16.***.**"
   port: 3306
   database: iflytek_annual_meeting
   # https://github.com/go-sql-driver/mysql/issues/674
