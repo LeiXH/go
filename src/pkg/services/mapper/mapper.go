@@ -105,7 +105,14 @@ func CountUserSignedRecord(queryType UserQueryType, keyword interface{}) (int, e
 func GetAllUser(nums int) ([]models.UserInfo, error) {
 	var all []models.UserInfo
 	DB := database.MySQL()
-	limit := 1
+
+	var limit  int
+	if nums == -1 {
+		limit = 0
+	} else {
+		limit = 100
+	}
+
 	rows, err :=DB.Query(queryUsersOffset, limit, nums * limit )
 
 	if err != nil {
