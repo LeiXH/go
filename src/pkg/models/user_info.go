@@ -7,4 +7,5 @@ type UserInfo struct {
 	Telephone string         `db:"telephone" json:"telephone"`
 	Degree   int          `db:"degree" json:"degree"`
 	Signed     int           `db:"signed" json:"signed"`
+	Mark     string           `db:"mark" json:"mark"`
 }

@@ -46,7 +46,7 @@ func GetUserInfo(queryType UserQueryType, keyword interface{}) (*models.UserInfo
 	var id  int
 	querys := fmt.Sprintf(getUserInfoSqlTemplate, _type)
 	err := DB.QueryRow(querys, keyword).Scan(&id, &userInfo.Name, &userInfo.Code,
-		&userInfo.Company, &userInfo.Telephone, &userInfo.Degree, &userInfo.Signed)
+		&userInfo.Company, &userInfo.Telephone, &userInfo.Degree, &userInfo.Signed, &userInfo.Mark)
 
 	if err != nil {
 		return nil, err
@@ -122,7 +122,7 @@ func GetAllUser(nums int) ([]models.UserInfo, error) {
 	for rows.Next() {
 		var one models.UserInfo
 		var id  int
-		rows.Scan(&id, &one.Name, &one.Code, &one.Company, &one.Telephone, &one.Degree, &one.Signed)
+		rows.Scan(&id, &one.Name, &one.Code, &one.Company, &one.Telephone, &one.Degree, &one.Signed, &one.Mark)
 
 		all = append(all, one)
 	}
@@ -131,9 +131,9 @@ func GetAllUser(nums int) ([]models.UserInfo, error) {
 
 func InsertData(info *models.UserInfo) error {
 	DB := database.MySQL()
-	smt, err := DB.Prepare(`insert into  briefing (name, code, company, telephone, degree, signed) values (?, ? , ? , ? , ? , ?)`)
+	smt, err := DB.Prepare(`insert into  briefing (name, code, company, telephone, degree, signed, mark) values (?, ? , ? , ? , ? , ? , ?)`)
 
-	res, err :=smt.Exec(info.Name, info.Code, info.Company, info.Telephone, info.Degree, info.Signed)
+	res, err :=smt.Exec(info.Name, info.Code, info.Company, info.Telephone, info.Degree, info.Signed, info.Mark)
 
 	_, err = res.LastInsertId()
 

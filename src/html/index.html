@@ -100,10 +100,12 @@
                 <li>公 司</li>
                 <li>手机号</li>
                 <li>嘉 宾</li>
+                <li>备 注</li>
             </ol>
         </div>
         <div class="content" id="user-content">
             <ol>
+                <li>待显示</li>
                 <li>待显示</li>
                 <li>待显示</li>
                 <li>待显示</li>
@@ -146,7 +148,7 @@
 
     function reset() {
         currentWorkNumberInputStack = "";
-        currentUserInfo = { "name": "", "company": "", "telephone": "", "degree": "" }
+        currentUserInfo = { "name": "", "company": "", "telephone": "", "degree": "" , "mark":""}
         updateStatus();
     }
     function saveNow(data) {
@@ -175,8 +177,9 @@
                     <li>{company}</li>
                     <li>{phone}</li>
                     <li>{degree}</li>
+                    <li>{mark}</li>
                 </ol>`.formatUnicorn(
-            { "user_name": data.name, "company": data.company, "phone": data.telephone, "degree": data.degree }
+            { "user_name": data.name, "company": data.company, "phone": data.telephone, "degree": data.degree, "mark":data.mark }
             )
         );
     }

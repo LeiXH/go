@@ -87,7 +87,9 @@ func Import(c echo.Context) error  {
 		user.Company = one["company"]
 		user.Telephone = one["telephone"]
 		user.Degree, _ = strconv.Atoi(one["degree"])
-		if re :=services.IsExist(user.Telephone); re == false {
+		user.Mark = one["mark"]
+		re :=services.IsExist(user.Telephone)
+		if re == true {
 			err := services.InsertData(&user)
 			if err != nil {
 				logger.Infof("insert error %s", err)

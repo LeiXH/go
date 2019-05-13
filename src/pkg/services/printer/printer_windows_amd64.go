@@ -18,7 +18,7 @@ func PrintUserLabel(userInfo *models.UserInfo) {
 
 func doPrint(userInfo *models.UserInfo) {
 
-	area := fmt.Sprintf("座位区域: %s", userInfo.SeatArea)
+	area := fmt.Sprintf("座位区域: %s", userInfo.Degree)
 	printSignCard(userInfo.Name, userInfo.Department, userInfo.QrCode, area)
 
 }

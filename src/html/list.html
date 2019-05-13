@@ -67,6 +67,7 @@
                             <td>${key.company}</td>
                             <td>${key.telephone}</td>
                             <td>${key.degree}</td>
+                            <td>${key.mark}</td>
                             <td>${key.signed}</td>
                           `
                     html += `</tr>`
@@ -110,10 +111,11 @@
                 contentType: "application/x-www-form-urlencoded",
                 data: { "data": jsonData }
             }).done(function (resp) {
-                let data = resp.error;
-                if (data) {
+                let data = resp.code;
+                if (data == 0) {
                     // 存一下, 重新打印需要
                     document.getElementById("demo").innerHTML = "导入成功"
+                    location.reload()
                     return;
                 }
                 document.getElementById("demo").innerHTML = "导入失败"
@@ -222,6 +224,7 @@
         <th>公司</th>
         <th>手机号</th>
         <th>嘉宾</th>
+        <th>备注</th>
         <th>是否签到</th>
     </tr>
     </thead>
