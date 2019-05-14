@@ -4,3 +4,5 @@ src/gopkg.in/
 /pkg/
 /bin/
 src/src/
+src/.DS_Store
+.idea/*
