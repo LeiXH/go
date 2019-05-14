@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2bd8a6c3-c6ff-4be7-a475-b187d2e51a27" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f892de5b-b810-4f9f-a4ac-93b81cc850e7.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/f892de5b-b810-4f9f-a4ac-93b81cc850e7.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bin/foo.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/bin/foo.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/html/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pkg/server/controller/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/server/controller/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pkg/services/mapper/mapper.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/pkg/services/mapper/mapper.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,13 +40,6 @@
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
       </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="foo.db" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
-        <item name="briefing: table" type="3d80ac25:SqliteImplModel$Table" />
-      </path>
     </expand>
     <select />
   </component>
@@ -55,8 +48,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/server.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="422">
-              <caret line="52" column="46" selection-start-line="52" selection-start-column="46" selection-end-line="52" selection-end-column="46" />
+            <state relative-caret-position="487">
+              <caret line="62" column="40" selection-start-line="62" selection-start-column="40" selection-end-line="62" selection-end-column="40" />
               <folding>
                 <element signature="e#14#139#0" expanded="true" />
               </folding>
@@ -67,8 +60,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pkg/server/controller/user.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
-              <caret line="35" selection-start-line="35" selection-end-line="35" />
+            <state relative-caret-position="240">
+              <caret line="27" column="19" lean-forward="true" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -76,8 +69,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pkg/services/user.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+            <state relative-caret-position="190">
+              <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
               <folding>
                 <element signature="e#18#91#0" expanded="true" />
               </folding>
@@ -89,9 +82,48 @@
         <entry file="das://f892de5b-b810-4f9f-a4ac-93b81cc850e7/schema/main/table/briefing">
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
             <state>
-              <filtering enabled="true">
-                <filter text="id=2" />
+              <filtering enabled="true" text="telephone=13701899341">
+                <filter text="telephone=13701899341" />
+                <filter text="telephone=13761515269" />
+                <filter text="telephone=18601776869" />
+                <filter text="telephone=15000802836" />
+                <filter text="telephone=15821276278" />
+                <filter text="telephone=15399629998" />
+                <filter text="telephone=17317895076" />
+                <filter text="telephone=13918932785" />
+                <filter text="telephone=13818089415" />
+                <filter text="telephone=18516508216" />
               </filtering>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pkg/services/mapper/mapper.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="149">
+              <caret line="50" column="23" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="23" />
+              <folding>
+                <element signature="e#16#64#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pkg/models/user_info.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="38">
+              <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/html/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="492">
+              <caret line="172" column="34" selection-start-line="172" selection-start-column="34" selection-end-line="172" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -134,10 +166,7 @@
         <option value="$PROJECT_DIR$/src/internal/tsc/config.go" />
         <option value="$PROJECT_DIR$/src/pkg/services/user.go" />
         <option value="$PROJECT_DIR$/src/pkg/services/printer/printer_windows_amd64.go" />
-        <option value="$PROJECT_DIR$/src/pkg/services/mapper/mapper.go" />
         <option value="$PROJECT_DIR$/src/pkg/models/user_info.go" />
-        <option value="$PROJECT_DIR$/src/html/index.html" />
-        <option value="$PROJECT_DIR$/src/pkg/server/controller/user.go" />
         <option value="$PROJECT_DIR$/src/html/list.html" />
         <option value="$PROJECT_DIR$/src/pkg/database/sqlite.go" />
         <option value="$PROJECT_DIR$/src/pkg/database/mysql.go" />
@@ -146,8 +175,11 @@
         <option value="$PROJECT_DIR$/src/server.go" />
         <option value="$PROJECT_DIR$/src/pkg/database/helper_sqlite.go" />
         <option value="$PROJECT_DIR$/src/bin/development.yml" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/html/index.html" />
+        <option value="$PROJECT_DIR$/src/pkg/server/controller/user.go" />
+        <option value="$PROJECT_DIR$/src/pkg/services/mapper/mapper.go" />
       </list>
     </option>
   </component>
@@ -173,6 +205,12 @@
               <item name="mproject" type="b2602c69:ProjectViewProjectNode" />
               <item name="mproject" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mproject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mproject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="html" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="mproject" type="b2602c69:ProjectViewProjectNode" />
@@ -259,6 +297,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17363112" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -273,13 +312,13 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" weight="0.3292232" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.37731197" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.37731197" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50072044" side_tool="true" weight="0.3292232" />
       <window_info anchor="bottom" id="Database Console" order="12" sideWeight="0.49927953" weight="0.3292232" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.22622478" />
+      <window_info active="true" anchor="right" id="Database" order="3" visible="true" weight="0.19020173" />
     </layout>
     <layout-to-restore>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1945245" />
@@ -491,27 +530,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/html/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2788">
-          <caret line="181" column="127" selection-start-line="181" selection-start-column="127" selection-end-line="181" selection-end-column="127" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pkg/models/user_info.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/html/list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="56" column="23" selection-start-line="56" selection-start-column="23" selection-end-line="56" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../golang/bin/src/github.com/labstack/echo/echo.go" />
     <entry file="file://$PROJECT_DIR$/src/pkg/database/config.go">
       <provider selected="true" editor-type-id="text-editor">
@@ -535,16 +553,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pkg/database/sqlite.go" />
-    <entry file="file://$PROJECT_DIR$/src/pkg/services/mapper/mapper.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="149" column="21" selection-start-line="149" selection-start-column="21" selection-end-line="149" selection-end-column="21" />
-          <folding>
-            <element signature="e#16#64#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pkg/database/helper_sqlite.go" />
     <entry file="file://$PROJECT_DIR$/src/pkg/server/server.go">
       <provider selected="true" editor-type-id="text-editor">
@@ -576,45 +584,85 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="7" lean-forward="true" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/html/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-539">
+          <caret line="56" column="23" selection-start-line="56" selection-start-column="23" selection-end-line="56" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pkg/models/user_info.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/html/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="492">
+          <caret line="172" column="34" selection-start-line="172" selection-start-column="34" selection-end-line="172" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/server.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="52" column="46" selection-start-line="52" selection-start-column="46" selection-end-line="52" selection-end-column="46" />
+        <state relative-caret-position="487">
+          <caret line="62" column="40" selection-start-line="62" selection-start-column="40" selection-end-line="62" selection-end-column="40" />
           <folding>
             <element signature="e#14#139#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pkg/server/controller/user.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="35" selection-start-line="35" selection-end-line="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="5" lean-forward="true" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pkg/services/user.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+        <state relative-caret-position="190">
+          <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
           <folding>
             <element signature="e#18#91#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/pkg/services/mapper/mapper.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="50" column="23" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="23" />
+          <folding>
+            <element signature="e#16#64#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pkg/server/controller/user.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="27" column="19" lean-forward="true" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
     <entry file="das://f892de5b-b810-4f9f-a4ac-93b81cc850e7/schema/main/table/briefing">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
-          <filtering enabled="true">
-            <filter text="id=2" />
+          <filtering enabled="true" text="telephone=13701899341">
+            <filter text="telephone=13701899341" />
+            <filter text="telephone=13761515269" />
+            <filter text="telephone=18601776869" />
+            <filter text="telephone=15000802836" />
+            <filter text="telephone=15821276278" />
+            <filter text="telephone=15399629998" />
+            <filter text="telephone=17317895076" />
+            <filter text="telephone=13918932785" />
+            <filter text="telephone=13818089415" />
+            <filter text="telephone=18516508216" />
           </filtering>
         </state>
       </provider>

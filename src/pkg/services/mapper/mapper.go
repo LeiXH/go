@@ -8,11 +8,11 @@ import (
 )
 
 const (
-	getUserInfoSqlTemplate      = `select * from briefing where %s = ?`
+	getUserInfoSqlTemplate      = `select name, code, company, telephone, degree, signed, mark from briefing where %s = ?`
 	countUserInfoSqlTemplate    = `select count(*) from briefing where %s = ?`
 	markUserAsSignedSqlTemplate = `update briefing set signed = 1 where %s = ?`
 	countUserSignSqlTemplate    = `select count(*) from briefing where signed = 1 and %s = ?`
-	queryUsersOffset            = `select * from briefing limit ? offset ?`
+	queryUsersOffset            = `select name, code, company, telephone, degree, signed, mark from briefing limit ? offset ?`
 	queryTelephoneIsExist       = `select count(*) from briefing where telephone = ? `
 )
 
@@ -43,9 +43,8 @@ func GetUserInfo(queryType UserQueryType, keyword interface{}) (*models.UserInfo
 	DB := database.MySQL()
 
 	userInfo := models.UserInfo{}
-	var id  int
 	querys := fmt.Sprintf(getUserInfoSqlTemplate, _type)
-	err := DB.QueryRow(querys, keyword).Scan(&id, &userInfo.Name, &userInfo.Code,
+	err := DB.QueryRow(querys, keyword).Scan( &userInfo.Name, &userInfo.Code,
 		&userInfo.Company, &userInfo.Telephone, &userInfo.Degree, &userInfo.Signed, &userInfo.Mark)
 
 	if err != nil {
@@ -121,8 +120,7 @@ func GetAllUser(nums int) ([]models.UserInfo, error) {
 
 	for rows.Next() {
 		var one models.UserInfo
-		var id  int
-		rows.Scan(&id, &one.Name, &one.Code, &one.Company, &one.Telephone, &one.Degree, &one.Signed, &one.Mark)
+		rows.Scan( &one.Name, &one.Code, &one.Company, &one.Telephone, &one.Degree, &one.Signed, &one.Mark)
 
 		all = append(all, one)
 	}

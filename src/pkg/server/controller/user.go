@@ -86,7 +86,16 @@ func Import(c echo.Context) error  {
 		user.Code = one["code"]
 		user.Company = one["company"]
 		user.Telephone = one["telephone"]
-		user.Degree, _ = strconv.Atoi(one["degree"])
+		switch one["degree"] {
+		case "重要嘉宾":
+			user.Degree = 2
+		case "嘉宾":
+			user.Degree = 0
+		case "达人":
+			user.Degree = 1
+		default:
+			user.Degree = 0
+		}
 		user.Mark = one["mark"]
 		re :=services.IsExist(user.Telephone)
 		if re == true {
