@@ -109,7 +109,7 @@ func GetAllUser(nums int) ([]models.UserInfo, error) {
 	if nums == -1 {
 		limit = 0
 	} else {
-		limit = 100
+		limit = 10000
 	}
 
 	rows, err :=DB.Query(queryUsersOffset, limit, nums * limit )
